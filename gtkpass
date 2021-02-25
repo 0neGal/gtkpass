@@ -1,0 +1,27 @@
+#!/bin/sh
+
+USERS=""
+adduser() {
+	INITUSERS="$USERS"
+
+	[ "$INITUSERS" != "" ] && { 
+		USERS="$USERS!$1"
+	} || {
+		USERS="$1"
+	}
+}
+
+getusers() {
+	compgen -u | grep root && adduser root
+	echo $USERS | grep $USER || adduser $USER
+	# In the future I should make an option to be able to auto detect more accounts
+
+	USERS="$(echo $USERS | sed "s/$USER/^$USER/g")"
+}
+
+init() {
+	getusers
+
+	yad --title="GTKPass" --text-align="center" --on-top --fixed --center --form --field="Username ":CB "$USERS" --field="Password ":H --focus-field="2"
+}; init
+
