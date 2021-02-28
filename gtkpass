@@ -32,6 +32,15 @@ check() {
 
 init() {
 	getusers
-
-	yad --title="GTKPass" --text-align="center" --on-top --fixed --center --form --field=" Username ":CB "$USERS" --field=" Password ":H --focus-field="2" --buttons-layout="spread" --icons --button="Cancel":1 --button="Sign In":0
+	gtkpass \
+		--fixed \
+		--icons \
+		--on-top \
+		--center \
+		--focus-field="2" \
+		--title="GTKPass" \
+		--text-align="center" \
+		--buttons-layout="spread" \
+		--button="Cancel":1 --button="Sign In":0 \
+		--form --field=" Username ":CB "$USERS" --field=" Password ":H 
 }; init | check "$(cat -)"
