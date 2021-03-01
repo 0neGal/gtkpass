@@ -32,7 +32,7 @@ check() {
 
 init() {
 	getusers
-	gtkpass \
+	yad \
 		--fixed \
 		--icons \
 		--on-top \
@@ -42,5 +42,5 @@ init() {
 		--text-align="center" \
 		--buttons-layout="spread" \
 		--button="Cancel":1 --button="Sign In":0 \
-		--form --field=" Username ":CB "$USERS" --field=" Password ":H 
+		--form --field=" Username ":cb "$USERS" --field=" Password ":H
 }; init | check "$(cat -)"
