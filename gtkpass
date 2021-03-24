@@ -21,7 +21,7 @@ getusers() {
 
 check() {
 	IFS=""
-	VALUES="$(echo -e "$(echo "$1" | sed 's/|/\\n/g')")"
+	VALUES="$(printf "$(echo "$1" | sed 's/|/\\n/g')")"
 
 	sudo ispass "$(echo $VALUES | sed 1q)" "$(echo $VALUES | sed 1d | sed 1q)" && {
 		return 0
