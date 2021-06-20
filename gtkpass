@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 USERS=""
 adduser() {
@@ -12,7 +12,7 @@ adduser() {
 }
 
 getusers() {
-	compgen -u | grep root > /dev/null && adduser root
+	awk -F: '{ print $1 }' /etc/passwd | grep root > /dev/null && adduser root
 	echo $USERS | grep $USER || adduser $USER
 	# In the future I should make an option to be able to auto detect more accounts
 
